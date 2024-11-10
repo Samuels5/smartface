@@ -120,9 +120,10 @@ class App extends Component {
     //         // });
 
     //     })
-    //     .catch(error => console.log('error', error));
-    fetch("https://smartfacebackend.vercel.app/api/analyze", {
+    //     .catch(error => console.log('error', error));https://smartfacebackend.vercel.app
+    fetch("https://smartfacebackend-4.onrender.com/api/analyze", {
       method: "POST",
+      // mode: "no-cors",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         modelId: MODEL_ID,
