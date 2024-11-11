@@ -2,11 +2,12 @@ import React from "react";
 import './FaceRecognition.css';
 
 const FaceRecognition = ({imgurl, box}) => {
+    
     return(
         <div className="center ma">
             <div className="absolute mt2">
             <img id='inputimage' alt = '' src={imgurl} width='500px' height='auto'/>
-            <div className="b" style={{position: 'absolute', top: box.top, left: box.left, right: box.right, bottom: box.bottom}}></div> 
+            {box.map((val,idx)=><div className="b" key={idx} style={{position: 'absolute', top: val.top, left: val.left, right: val.right, bottom: val.bottom}}></div> )}
             </div>
         </div>
     );
