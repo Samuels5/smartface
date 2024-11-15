@@ -9,6 +9,7 @@ class Register extends React.Component {
       name: "",
     };
   }
+  // baseurl = "http://localhost:3000"
   baseurl = "https://smartfacebackend.onrender.com";
   onnamechange = (event) => {
     this.setState({ name: event.target.value });
@@ -21,7 +22,7 @@ class Register extends React.Component {
   };
 
   onsubmitsignin = () => {
-    console.log(this.state);
+    // console.log(this.state);
     fetch(this.baseurl + "/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -33,7 +34,7 @@ class Register extends React.Component {
     })
       .then((response) => response.json())
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         if (user) {
           this.props.loaduser(user);
           this.props.onRouteChange("home");

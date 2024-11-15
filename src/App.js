@@ -27,17 +27,20 @@ class App extends Component {
       },
     };
   }
-  baseurl = "https://smartfacebackend.onrender.com"
+  baseurl = "http://localhost:3000";
+  // baseurl = "https://smartfacebackend.onrender.com";
   loaduser = (data) => {
-    this.setState({user:{
+    this.setState({
+      user: {
         id: data.id,
         name: data.name,
         email: data.email,
         password: data.password,
         entries: data.entries,
         joined: data.joined,
-  }})
-  }
+      },
+    });
+  };
 
   responsible = (data) => {
     const newarr = [];
@@ -89,17 +92,19 @@ class App extends Component {
           console.error("Error in response:", response);
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        fetch(this.baseurl+"/image", {
+        fetch(this.baseurl + "/image", {
           method: "put",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             id: this.state.user.id,
           }),
-        }).catch(console.log('fetching problem'))
+        })
+          .catch(console.log("fetching problem"))
           .then((response) => response.json())
           .then((count) => {
             this.setState(Object.assign(this.state.user, { entries: count }));
-          }).catch(console.log("connection issue"))
+          })
+          .catch(console.log("connection issue"));
         return response.json();
       })
       .then((result) => {
@@ -130,17 +135,26 @@ class App extends Component {
         {this.state.route === "home" ? (
           <div>
             <Logo />
-            <Rank name={this.state.user.name} entries={this.state.user.entries}/>
+            <Rank
+              name={this.state.user.name}
+              entries={this.state.user.entries}
+            />
             <Imagelink
               oninputchange={this.oninputchange}
               onbuttonsubmit={this.onbuttonsubmit}
             />
-            <FaceRecognition box={this.state.box?this.state.box:[]} imgurl={this.state.imgurl} />
+            <FaceRecognition
+              box={this.state.box ? this.state.box : []}
+              imgurl={this.state.imgurl}
+            />
           </div>
         ) : this.state.route === "signin" ? (
           <Sign loadUser={this.loaduser} onRouteChange={this.onRouteChange} />
         ) : (
-          <Register loaduser ={this.loaduser} onRouteChange={this.onRouteChange} />
+          <Register
+            loaduser={this.loaduser}
+            onRouteChange={this.onRouteChange}
+          />
         )}
       </div>
     );

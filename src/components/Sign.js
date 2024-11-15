@@ -8,6 +8,7 @@ class Sign extends React.Component {
       signinpassword: "",
     };
   }
+  // baseurl = "http://localhost:3000";
   baseurl = "https://smartfacebackend.onrender.com";
   onemailchange = (event) => {
     this.setState({ signinemal: event.target.value });
@@ -16,8 +17,8 @@ class Sign extends React.Component {
     this.setState({ signinpassword: event.target.value });
   };
   onsubmitsignin = () => {
-    console.log(this.state);
-    fetch(this.baseurl+"/signin", {
+    // console.log(this.state);
+    fetch(this.baseurl + "/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -41,7 +42,8 @@ class Sign extends React.Component {
           this.props.loadUser(user);
           this.props.onRouteChange("home");
         }
-      }).catch(console.log('fetching problem'));
+      })
+      .catch(console.log("fetching problem"));
   };
 
   render() {
