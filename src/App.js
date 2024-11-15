@@ -27,8 +27,8 @@ class App extends Component {
       },
     };
   }
-  baseurl = "http://localhost:3000";
-  // baseurl = "https://smartfacebackend.onrender.com";
+  // baseurl = "http://localhost:3000";
+  baseurl = "https://smartfacebackend.onrender.com";
   loaduser = (data) => {
     this.setState({
       user: {
