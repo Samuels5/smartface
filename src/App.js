@@ -27,7 +27,7 @@ class App extends Component {
       },
     };
   }
-  // baseurl = "http://localhost:3000";
+  // baseurl = "http://localhost:3000"; 
   baseurl = "https://smartfacebackend.onrender.com";
   loaduser = (data) => {
     this.setState({
@@ -65,6 +65,21 @@ class App extends Component {
   oninputchange = (event) => {
     this.setState({ input: event.target.value });
   };
+  deleting = () => {
+    fetch(this.baseurl+'/delete', {
+      method: "delete",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.user.email
+      }),
+    })
+    .then((response) => {
+        if (!response.ok) {
+          return false
+        } else{return true}})
+    .finally(()=>true)
+    .catch(err => console.log(err));
+  }
   onbuttonsubmit = () => {
     this.setState({ imgurl: this.state.input });
 
@@ -130,6 +145,7 @@ class App extends Component {
       <div className="App">
         <Navigation
           issign={this.state.issign}
+          deleting={this.deleting}
           onRouteChange={this.onRouteChange}
         />
         {this.state.route === "home" ? (
