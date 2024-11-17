@@ -7,6 +7,7 @@ import Sign from "./components/Sign";
 import Register from "./components/Register";
 import FaceRecognition from "./components/FaceRecognition";
 import React, { Component } from "react";
+import Update from "./components/Update";
 
 class App extends Component {
   constructor() {
@@ -21,13 +22,15 @@ class App extends Component {
         id: "",
         name: "",
         email: "",
-        password: "",
+        // password: "",
         entries: 0,
         joined: "",
       },
     };
   }
-  // baseurl = "http://localhost:3000"; 
+  // https://smartface.vercel.app/
+  // https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/201011/20101123135945-2.jpg?itok=WnYUK8RR
+  // baseurl = "http://localhost:3000";
   baseurl = "https://smartfacebackend.onrender.com";
   loaduser = (data) => {
     this.setState({
@@ -35,7 +38,7 @@ class App extends Component {
         id: data.id,
         name: data.name,
         email: data.email,
-        password: data.password,
+        // password: data.password,
         entries: data.entries,
         joined: data.joined,
       },
@@ -66,20 +69,23 @@ class App extends Component {
     this.setState({ input: event.target.value });
   };
   deleting = () => {
-    fetch(this.baseurl+'/delete', {
+    fetch(this.baseurl + "/delete", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: this.state.user.email
+        email: this.state.user.email,
       }),
     })
-    .then((response) => {
+      .then((response) => {
         if (!response.ok) {
-          return false
-        } else{return true}})
-    .finally(()=>true)
-    .catch(err => console.log(err));
-  }
+          return false;
+        } else {
+          return true;
+        }
+      })
+      .finally(() => true)
+      .catch((err) => console.log(err));
+  };
   onbuttonsubmit = () => {
     this.setState({ imgurl: this.state.input });
 
@@ -145,6 +151,7 @@ class App extends Component {
       <div className="App">
         <Navigation
           issign={this.state.issign}
+          route={this.state.route}
           deleting={this.deleting}
           onRouteChange={this.onRouteChange}
         />
@@ -166,6 +173,13 @@ class App extends Component {
           </div>
         ) : this.state.route === "signin" ? (
           <Sign loadUser={this.loaduser} onRouteChange={this.onRouteChange} />
+        ) : this.state.route === "update" ? (
+          <Update
+            name={this.state.user.name}
+            email={this.state.user.email}
+            loaduser={this.loaduser}
+            onRouteChange={this.onRouteChange}
+          />
         ) : (
           <Register
             loaduser={this.loaduser}
