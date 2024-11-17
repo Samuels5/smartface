@@ -91,21 +91,13 @@ class App extends Component {
 
     const IMAGE_URL = this.state.input;
 
-    // http://localhost:5000
+    // http://localhost:5000https://smartfacebackend-4.onrender.com
 
-    fetch("https://smartfacebackend-4.onrender.com/api/analyze", {
+    fetch(this.baseurl + "/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        inputs: [
-          {
-            data: {
-              image: {
-                url: IMAGE_URL,
-              },
-            },
-          },
-        ],
+        IMAGE_URL: IMAGE_URL,
       }),
     })
       .then((response) => {
