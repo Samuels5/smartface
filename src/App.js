@@ -142,7 +142,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ParticlesBg type="ball" bg={true} />
+        <ParticlesBg type="square" bg={true} />
         <Navigation
           issign={this.state.issign}
           route={this.state.route}
