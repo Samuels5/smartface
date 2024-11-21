@@ -1,6 +1,7 @@
 import "./App.css";
 import Navigation from "./components/Navigation";
 import Logo from "./components/Logo";
+import ParticlesBg from "particles-bg"
 import Imagelink from "./components/Imagelink";
 import Rank from "./components/Rank";
 import Sign from "./components/Sign";
@@ -141,6 +142,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ParticlesBg type="ball" bg={true} />
         <Navigation
           issign={this.state.issign}
           route={this.state.route}
