@@ -10,6 +10,7 @@ class Register extends React.Component {
     };
   }
   // baseurl = "http://localhost:3000"
+  // baseurl = "https://smartface-server-with-mangodb.onrender.com";
   baseurl = "https://smartfacebackend.onrender.com";
   onnamechange = (event) => {
     this.setState({ name: event.target.value });

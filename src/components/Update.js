@@ -4,19 +4,20 @@ class Update extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    //   email: "",
+      //   email: "",
       password: "",
       name: "",
     };
   }
-//   baseurl = "http://localhost:3000"
+  //   baseurl = "http://localhost:3000"
+  // baseurl = "https://smartface-server-with-mangodb.onrender.com";
   baseurl = "https://smartfacebackend.onrender.com";
   onnamechange = (event) => {
     this.setState({ name: event.target.value });
   };
-//   onemailchange = (event) => {
-//     this.setState({ emal: event.target.value });
-//   };
+  //   onemailchange = (event) => {
+  //     this.setState({ emal: event.target.value });
+  //   };
   onpasswordchange = (event) => {
     this.setState({ password: event.target.value });
   };
@@ -40,8 +41,10 @@ class Update extends React.Component {
           this.props.onRouteChange("home");
         }
       })
-      .catch((err)=>console.log("Fetching"))
-      .finally(()=>{alert('updated successfully')});
+      .catch((err) => console.log("Fetching"))
+      .finally(() => {
+        alert("updated successfully");
+      });
   };
 
   render() {

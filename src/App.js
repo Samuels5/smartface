@@ -7,8 +7,10 @@ import Rank from "./components/Rank";
 import Sign from "./components/Sign";
 import Register from "./components/Register";
 import FaceRecognition from "./components/FaceRecognition";
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Update from "./components/Update";
+
+const tele = window.Telegram.WebApp;
 
 class App extends Component {
   constructor() {
@@ -29,9 +31,15 @@ class App extends Component {
       },
     };
   }
+  // useEffect(()=>{
+  //   tele.ready();
+  // });
+  
+
   // https://smartface.vercel.app/
   // https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/201011/20101123135945-2.jpg?itok=WnYUK8RR
   // baseurl = "http://localhost:3000";
+  // baseurl = "https://smartface-server-with-mangodb.onrender.com";
   baseurl = "https://smartfacebackend.onrender.com";
   loaduser = (data) => {
     this.setState({
@@ -138,8 +146,9 @@ class App extends Component {
     }
     this.setState({ route: to });
   };
-
+  
   render() {
+    tele.ready();
     return (
       <div className="App">
         <ParticlesBg type="square" bg={true} />
@@ -184,5 +193,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
